@@ -50,9 +50,7 @@ private[httpclient] class SyncCore private(maxTotal: Int = DefaultMaxTotal,
     max : 允许创建的最大连接数量
      */
     if (null != cm.getTotalStats) {
-      Log.whenDebugEnabled({
-        Log.debug("Http client Pool Stats : {}", cm.getTotalStats.toString)
-      })
+      Log.debug("Http client Pool Stats : {}", cm.getTotalStats.toString)
     }
     httpclient
   }
