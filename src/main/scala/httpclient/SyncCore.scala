@@ -55,7 +55,7 @@ private[httpclient] class SyncCore private(maxTotal: Int = DefaultMaxTotal,
     httpclient
   }
 
-  def doPost[R](uri: String, entity: AbstractHttpEntity, heads: Map[String, String], f: HttpEntity => R): R = {
+  def doPost[R](uri: String, entity: AbstractHttpEntity, heads: Map[String, String])(f: HttpEntity => R): R = {
     var _response: CloseableHttpResponse = null
     val post = HttpUtil.createHttpPost(uri, entity, heads, rc)
     try {

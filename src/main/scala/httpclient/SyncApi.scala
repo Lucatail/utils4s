@@ -38,7 +38,7 @@ final class SyncApi private[httpclient](core: SyncCore) {
   def doPost(uri: String,
              params: Map[String, String] = Map.empty,
              heads: Map[String, String] = Map.empty): String = {
-    core.doPost(uri, conversionParam(params), heads, EntityUtils.toString)
+    core.doPost(uri, conversionParam(params), heads)(EntityUtils.toString)
   }
 
   /**
@@ -53,7 +53,7 @@ final class SyncApi private[httpclient](core: SyncCore) {
                   heads: Map[String, String] = Map.empty): String = {
     val entity: StringEntity = new StringEntity(json, Encoding)
     entity.setContentType("application/json") //设置为 json数据
-    core.doPost(uri, entity, heads, EntityUtils.toString)
+    core.doPost(uri, entity, heads)(EntityUtils.toString)
   }
 
   /**
@@ -68,7 +68,7 @@ final class SyncApi private[httpclient](core: SyncCore) {
                  heads: Map[String, String] = Map.empty): String = {
     val entity = new StringEntity(xml, Encoding)
     entity.setContentType("application/xml") //设置为 json数据
-    core.doPost(uri, entity, heads, EntityUtils.toString)
+    core.doPost(uri, entity, heads)(EntityUtils.toString)
   }
 
   /**
@@ -82,7 +82,7 @@ final class SyncApi private[httpclient](core: SyncCore) {
   def doPost$Byte2String(uri: String, bytes: Array[Byte],
                          heads: Map[String, String] = Map.empty): String = {
     val entity = new ByteArrayEntity(bytes)
-    core.doPost(uri, entity, heads, EntityUtils.toString)
+    core.doPost(uri, entity, heads)(EntityUtils.toString)
   }
 
   /**
@@ -96,6 +96,6 @@ final class SyncApi private[httpclient](core: SyncCore) {
   def doPost$Byte2Byte(uri: String, bytes: Array[Byte],
                        heads: Map[String, String] = Map.empty): Array[Byte] = {
     val byteArrayEntity = new ByteArrayEntity(bytes)
-    core.doPost(uri, byteArrayEntity, heads, EntityUtils.toByteArray)
+    core.doPost(uri, byteArrayEntity, heads)(EntityUtils.toByteArray)
   }
 }
