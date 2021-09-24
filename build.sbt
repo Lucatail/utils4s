@@ -13,4 +13,12 @@ libraryDependencies ++= Seq(
   // logger
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.3",
   "ch.qos.logback" % "logback-classic" % "1.2.3",
+
+  // common
+  "commons-io" % "commons-io" % "2.6",
+
+  // akka
+  "com.typesafe.akka" %% "akka-actor" % "2.5.23",
+  "com.typesafe.akka" %% "akka-remote" % "2.5.23",
+  "com.twitter" %% "chill-akka" % "0.9.5",
 )
